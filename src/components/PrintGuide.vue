@@ -2,8 +2,6 @@
   <section id="printguide" class="section">
     <div class="columns">
       <div class="column is-2">
-        <div v-html="banner1" style="margin-top: 120px"></div>
-        <div v-html="banner2" style="margin-top: 600px"></div>
       </div>
       <div class="column is-8">
 
@@ -36,26 +34,6 @@
           </div>
         </div>
 
-        <!-- Cura Guide -->
-        <hr/>
-        <h3 class="title is-2">
-          Cura
-        </h3>
-        <p class="subtitle">
-          ({{$t('printGuideVersionDisclaimer', {version: '4.4.1'} )}})
-        </p>
-        <div class="columns">
-          <div class="column">
-            <img src="../assets/printguide/cura_layers.gif" alt="find the layer where the color change should happen" loading="lazy">
-            <p v-html="$t('printGuideCuraStep1')"></p>
-          </div>
-          <div class="column">
-            <img src="../assets/printguide/cura_add_postprocessing.gif" alt="set up the postprocessing script" loading="lazy">
-            <ol type="1" v-html="$t('printGuideCuraStep2')"></ol>
-          </div>
-        </div>
-        <p v-html="$t('printGuideStep3')"></p>
-
         <!-- PrusaSlicer Guide -->
         <hr/>
         <h3 class="title is-2">
@@ -79,26 +57,6 @@
     </div>
   </section>
 </template>
-
-<script>
-import { getRandomBanner } from '../utils';
-
-export default {
-  data() {
-    return {
-      banner1: '',
-      banner2: '',
-      banner3: '',
-    };
-  },
-  mounted() {
-    this.banner1 = getRandomBanner('300x600');
-    this.banner2 = getRandomBanner('300x600');
-    this.banner3 = getRandomBanner('300x600');
-  },
-};
-</script>
-
 <style scoped>
   .title {
     margin-top: 10px;

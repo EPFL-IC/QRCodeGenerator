@@ -33,56 +33,12 @@
         <div class="navbar-item">
           <LanguageSelector />
         </div>
-        <div class="navbar-item">
-          <ShareButtons />
-        </div>
-        <div class="navbar-item" v-if="showThankYou">
-          <div class="buttons">
-            <a class="button is-danger" href="https://paypal.me/fstein42" target="_blank" @click="showThanks">
-              <span class="icon">
-                <i class="fa fa-heart"></i>
-              </span>
-              <span>Thank You!</span>
-            </a>
-          </div>
-        </div>
-        <div class="navbar-item" v-if="!showThankYou">
-          <div class="buttons">
-            <a class="button" href="https://paypal.me/fstein42" target="_blank" @click="showThanks">
-              <span class="icon">
-                <i class="fab fa-paypal"></i>
-              </span>
-              <span>{{$t('supportMe')}}</span>
-            </a>
-          </div>
-        </div>
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button" href="https://github.com/flxn/qrcode2stl" target="_blank">
-              <span class="icon">
-                <i class="fab fa-github"></i>
-              </span>
-              <span>{{$t('viewOnGithub')}}</span>
-            </a>
-          </div>
-        </div>
-        <div class="navbar-item">
-          <div class="buttons">
-            <a :class="{'button': true, 'is-info': newVersion, 'unread': newVersion}" @click="openChangelogModal">
-              <span class="icon">
-                <i class="fa fa-box"></i>
-              </span>
-              <span>v{{appVersion}}</span>
-            </a>
-          </div>
-        </div>
       </div>
     </div>
   </nav>
 </template>
 
 <script>
-import ShareButtons from './ShareButtons.vue';
 import LanguageSelector from './LanguageSelector.vue';
 import packageJson from '../../package.json';
 import { bus } from '../main';
@@ -90,15 +46,13 @@ import { bus } from '../main';
 export default {
   name: 'Header',
   components: {
-    ShareButtons,
     LanguageSelector,
   },
   data() {
     return {
-      navbarOpen: false,
-      showThankYou: false,
+      navbarOpen: true,
       appVersion: packageJson.version,
-      newVersion: false,
+      newVersion: true,
       showShareNotice: false,
       headerAd: '',
     };
@@ -106,9 +60,6 @@ export default {
   methods: {
     toggleNavigation() {
       this.navbarOpen = !this.navbarOpen;
-    },
-    showThanks() {
-      this.showThankYou = true;
     },
     openChangelogModal() {
       bus.$emit('openChangelogModal');
@@ -124,7 +75,7 @@ export default {
     if (lastViewedVersion !== this.appVersion) {
       this.newVersion = true;
     }
-    bus.$on('exportReady', () => { this.showShareNotice = true; });
+    bus.$on('exportReady', () => { this.showShareNotice = false; });
   },
 };
 </script>

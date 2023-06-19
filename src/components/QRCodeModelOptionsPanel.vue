@@ -661,6 +661,7 @@ export default {
   data() {
     return {
       icons: [
+        'epfl',
         'wifi',
         'user',
         'user-plus',
